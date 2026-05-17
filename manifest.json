@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "Monkeytyper",
+    "version": "1.0",
+
+    "description": "A browser extension that automates monkeytype.com tests.",
+
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+
+    "host_permissions": [
+        "https://monkeytype.com/*"
+    ],
+
+    "background": {
+        "service_worker": "src/background/background.js"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["https://monkeytype.com/*"],
+            "js": [
+                "src/content/content.js",
+                "src/content/input.js",
+                "src/content/bot.js",
+                "src/content/parser.js"
+            ]
+        }
+    ],
+
+    "action": {
+        "default_popup": "src/popup/popup.html"
+    }
+}

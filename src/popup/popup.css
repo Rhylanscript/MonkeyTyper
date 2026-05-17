@@ -1,0 +1,39 @@
+body {
+    width: 220px;
+    padding: 12px;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff2222;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #444;
+    color: #ddd;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #666;
+}
