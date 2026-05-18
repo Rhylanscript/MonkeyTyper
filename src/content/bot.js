@@ -1,11 +1,18 @@
 // src/content/bot.js
 
-let randOffset = 0;		// 40
-let randMultiplier = 0;	// 30
-let randSleep = 0;			// 50
-let monkeytypeadvance = 0; 	// 10
+let randOffset;
+let randMultiplier;
+let randSleep;
+let monkeytypeadvance;
 
 let running = false;
+
+function applySpeedSettings(speed) {
+	randOffset 			= speed.randomOffset;
+	randMultiplier 		= speed.randomMultiplier;
+	randSleep			= speed.randSleep;
+	monkeytypeadvance	= speed.monkeyTypeAdvance;
+}
 
 async function startBot() {
 	if (running) return;

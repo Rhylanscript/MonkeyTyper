@@ -6,13 +6,16 @@ Download this repository or get one of the releases, and install it as a browser
 
 For unzipped folders:
 - Press the `Load unpacked` button 
-- Select the __root folder__ of this project.
+- Select the __root folder__ of this project
 
 For zipped folders:
-- Click the `Pack extension` button
-- Select the zip file of this project.
+- Unzip the folder to a directory
+- Continue like normal with unzipped installation
 
-From there, the extension will open a modal when clicked on a browser. The `Enable bot` button will turn the bot on, and click it again to disable it.
+### How to Use
+The extension will open a modal when clicked on a browser. The `Enable bot` button will turn the bot on, and click it again to disable it.
+
+To change the speed, use the speed slider to switch between different random speeds. Note that due to randomness of the bot, speeds will not be completely consistent between trials.
 
 <!-- LINKS -->
 
