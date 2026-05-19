@@ -1,5 +1,5 @@
 # MonkeyTyper
-An automatic typing bot for [Monkeytype][mt].
+An automatic typing bot for [Monkeytype][monkeytype].
 
 ---
 
