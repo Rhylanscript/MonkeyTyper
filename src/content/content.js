@@ -2,7 +2,7 @@
 
 chrome.storage.local.set({ enabled: false });
 
-chrome.storage.local.get("speedIndex").then(result => {
+chrome.storage.local.get(["speedIndex", "accuracyIndex"]).then(result => {
 	// library of speed values
 	const SPEEDS = [
 		{ label: "Yawn",    randomOffset: 120, randomMultiplier: 90, randSleep: 140, monkeyTypeAdvance: 40 },
@@ -12,6 +12,15 @@ chrome.storage.local.get("speedIndex").then(result => {
 		{ label: "Blitz", 	randomOffset: 0,   randomMultiplier: 0,  randSleep: 0,   monkeyTypeAdvance: 0  },
 	];
 	applySpeedSettings(SPEEDS[result.speedIndex ?? 2]);
+
+	// library of accuracy values
+	const ACCURACIES = [
+		{ label: "Poor",  	mistakeChance: 0.30 },
+		{ label: "Okay",    mistakeChance: 0.10 },
+		{ label: "Good",    mistakeChance: 0.02 },
+		{ label: "Perfect", mistakeChance: 0    },
+	];
+	applyAccuracySettings(ACCURACIES[result.accuracyIndex ?? 3]);
 });
 
 chrome.runtime.onMessage.addListener(
@@ -23,5 +32,26 @@ chrome.runtime.onMessage.addListener(
 		if (message.action === "setSpeed") {
 			applySpeedSettings(message.speed);
 		}
+		if (message.action === "setAccuracy") {
+			applyAccuracySettings(message.accuracy);
+		}
 	}
 )
+
+const observer = new MutationObserver(() => {
+	const result = document.querySelector("#result");
+	if (result && !result.classList.contains("hidden")) {
+		stopBot();
+		chrome.storage.local.set({ enabled: false });
+		chrome.runtime.sendMessage({ action: "setEnabled", enabled: false });
+	}
+});
+
+observer.observe(
+	document.body, { 
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeFilter: ["class"],
+	}
+);

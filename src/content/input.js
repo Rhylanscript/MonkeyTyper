@@ -14,6 +14,38 @@ function typeCharacter(char) {
 
     input.focus();
 
+    if (char === "Backspace") {
+        input.value = input.value.slice(0, -1);
+        // keydown
+        input.dispatchEvent(
+            new KeyboardEvent( "keydown", {
+                key: "Backspace", 
+                bubbles: true, 
+                cancelable: true 
+            })
+        );
+
+        // input event
+        input.dispatchEvent(
+            new InputEvent("input", {
+                inputType: "deleteContentBackward",
+                bubbles: true,
+                cancelable: true
+            })
+        );
+
+        // keyup
+        input.dispatchEvent(
+            new KeyboardEvent( "keyup", {
+                key: "Backspace", 
+                bubbles: true, 
+                cancelable: true 
+            })
+        );
+
+        return true;
+    }
+
     // keydown
     input.dispatchEvent(
         new KeyboardEvent("keydown", {

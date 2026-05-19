@@ -5,6 +5,8 @@ let randMultiplier;
 let randSleep;
 let monkeytypeadvance;
 
+let mistakeChance = 0;
+
 let running = false;
 
 function applySpeedSettings(speed) {
@@ -12,6 +14,15 @@ function applySpeedSettings(speed) {
 	randMultiplier 		= speed.randomMultiplier;
 	randSleep			= speed.randSleep;
 	monkeytypeadvance	= speed.monkeyTypeAdvance;
+}
+
+function applyAccuracySettings(accuracy) {
+	mistakeChance = accuracy.mistakeChance;
+}
+
+function randomChar() {
+	const chars = "abcdefghijklmnopqrstuvwxyz";
+	return chars[Math.floor(Math.random() * chars.length)];
 }
 
 async function startBot() {
@@ -32,6 +43,17 @@ async function startBot() {
 
 		for (const char of word) {
 			if (!running) return;
+
+			if (mistakeChance > 0 && Math.random() < mistakeChance) {
+				const wrongChar = randomChar();
+				typeCharacter(wrongChar);
+				await sleep(randomDelay());
+
+				if (wrongChar == char) continue;
+
+				typeCharacter("Backspace");
+				await sleep(randomDelay());
+			}
 
 			typeCharacter(char);
 			await sleep(randomDelay());
